@@ -1,4 +1,7 @@
-def create(lst_cheltuieli,nr_ap=int, suma, data, tipul):
+from Domain.cheltuiala import get_nr_ap
+from Domain.cheltuiala import creeaza_cheltuiala
+
+def create(lst_cheltuieli,nr_ap=int, suma=float, data=str, tipul=str):
     '''
 
     :param lst_cheltuieli: lista de cheltuieli
@@ -38,7 +41,7 @@ def update(lst_cheltuieli, new_cheltuiala):
     '''
     new_cheltuiali= []
     for cheltuiala in lst_cheltuieli:
-        if get_nr_ap(cheltuiala)!=get_nr_ap(new_cheltuiala)
+        if get_nr_ap(cheltuiala)!=get_nr_ap(new_cheltuiala):
             new_cheltuiali.append(cheltuiala)
         else: new_cheltuiali.append(new_cheltuiala)
     return new_cheltuiali
@@ -54,5 +57,5 @@ def delete(lst_cheltuiali, nr_ap):
     new_cheltuieli= []
     for cheltuiala in lst_cheltuiali:
         if get_nr_ap(cheltuiala)!=nr_ap:
-            nr_ap.append(cheltuiala)
+            new_cheltuieli.append(cheltuiala)
     return new_cheltuieli

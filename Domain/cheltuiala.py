@@ -1,4 +1,4 @@
-def creeaza_cheltuiala(nr_ap=int, suma, data, tipul):
+def creeaza_cheltuiala(nr_ap=int, suma=float, data=str, tipul=str):
     '''
     Creeaza o cheltuiala
     :param nr_ap: numarul apartamentului, trebuie sa fie unic
