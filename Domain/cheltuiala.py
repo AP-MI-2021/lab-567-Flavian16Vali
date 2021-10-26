@@ -1,4 +1,4 @@
-def creeaza_cheltuiala(nr_ap, suma, data, tipul):
+def creeaza_cheltuiala(nr_ap=int, suma, data, tipul):
     '''
     Creeaza o cheltuiala
     :param nr_ap: numarul apartamentului, trebuie sa fie unic
@@ -42,7 +42,9 @@ def get_tipul(cheltuiala):
     '''
     Getter tipul chltuielilor
     :param cheltuiala: cheltuiala
-    :return: Tipul cheltuielilor in functie de cheltuiala
+    :return: tipul cheltuielilor in functie de cheltuiala
     '''
     return cheltuiala['tipul']
 
+def get_str(cheltuiala):
+    return f'Cheltuiala de la apartamentul {get_nr_ap(chrltuiala)}, cu valoarea: {get_suma(cheltuiala)}, date la data {get_data(cheltuiala)}, fiind de tipul {get_tipul(cheltuiala)}'
