@@ -1,7 +1,7 @@
 from Domain.cheltuiala import get_nr_ap
 from Domain.cheltuiala import creeaza_cheltuiala
 
-def create(lst_cheltuieli,nr_ap=int, suma=float, data=str, tipul=str):
+def create(lst_cheltuieli,nr_ap:int, suma:float, data:str, tipul:str):
     '''
 
     :param lst_cheltuieli: lista de cheltuieli
