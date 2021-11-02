@@ -1,48 +1,48 @@
-from Domain.cheltuiala import creeaza_cheltuiala
+from Domain.factura import creeaza_factura
 from Logic.crud import create
 from Logic.crud import read
-from Domain.cheltuiala import get_nr_ap
+from Domain.factura import get_id
 from Logic.crud import update
 from Logic.crud import delete
 
 def get_data():
     return [
-        creeaza_cheltuiala(1,500,'16/12/2020','intretinere'),
-        creeaza_cheltuiala(2,700,'1/2/2020','intretinere'),
-        creeaza_cheltuiala(3,850,'6/1/2020','intretinere'),
-        creeaza_cheltuiala(4,550,'6/2/2020','intretinere'),
-        creeaza_cheltuiala(5,250,'26/2/2021','intretinere')
+        creeaza_factura(1,10,500,'16/12/2020','intretinere'),
+        creeaza_factura(2,11,700,'1/2/2020','intretinere'),
+        creeaza_factura(3,12,850,'6/1/2020','intretinere'),
+        creeaza_factura(4,13,550,'6/2/2020','intretinere'),
+        creeaza_factura(5,14,250,'26/2/2021','intretinere')
     ]
 def test_create():
-    cheltuieli=get_data()
-    params=(6,983,'4/10/2021','intretinere')
-    c_new=creeaza_cheltuiala(*params)
-    new_cheltuieli=create(cheltuieli, *params)
-    assert new_cheltuieli[-1]==c_new
-    assert c_new in new_cheltuieli
+    facturi=get_data()
+    params=(6,40,983,'4/10/2021','intretinere')
+    c_new=creeaza_factura(*params)
+    new_facturi=create(facturi, *params)
+    assert new_facturi[-1]==c_new
+    assert c_new in new_facturi
 
 def test_read():
-    cheltuieli=get_data()
-    some_c=cheltuieli[2]
-    assert read(cheltuieli,get_nr_ap(some_c))==some_c
-    assert read(cheltuieli, None)==cheltuieli
+    facturi=get_data()
+    some_c=facturi[2]
+    assert read(facturi,get_id(some_c))==some_c
+    assert read(facturi, None)==facturi
 
 def test_update():
-    cheltuieli=get_data()
-    c_updated=creeaza_cheltuiala(4,564,'29/9/2021','intretinere')
-    updated=update(cheltuieli, c_updated)
+    facturi=get_data()
+    c_updated=creeaza_factura(4,40,564,'29/9/2021','intretinere')
+    updated=update(facturi, c_updated)
     assert c_updated in updated
-    assert c_updated not in cheltuieli
-    assert len(updated)==len(cheltuieli)
+    assert c_updated not in facturi
+    assert len(updated)==len(facturi)
 
 def test_delete():
-    cheltuieli=get_data()
+    facturi=get_data()
     to_delete=3
-    c_deleted=read(cheltuieli, to_delete)
-    deleted=delete(cheltuieli, to_delete)
+    c_deleted=read(facturi, to_delete)
+    deleted=delete(facturi, to_delete)
     assert c_deleted not in deleted
-    assert c_deleted in cheltuieli
-    assert len(deleted)==len(cheltuieli)-1
+    assert c_deleted in facturi
+    assert len(deleted)==len(facturi)-1
 
 def test_pentru_crud():
     test_create()

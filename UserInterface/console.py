@@ -1,71 +1,82 @@
-from Logic.crud import create
-from Domain.cheltuiala import get_str
+from Logic.crud import create, delete
+from Domain.factura import get_str, get_nr_ap, get_id
 from Logic.crud import read
-from Domain.cheltuiala import get_suma
-from Domain.cheltuiala import get_data
-from Domain.cheltuiala import get_tipul
+from Domain.factura import get_suma
+from Domain.factura import get_data
+from Domain.factura import get_tipul
 from Logic.crud import update
-from Domain.cheltuiala import creeaza_cheltuiala
+from Domain.factura import creeaza_factura
 
 def show_menu():
     print('1. CRUD')
-    print('2. Ștergerea tuturor cheltuielilor pentru un apartament dat')
+    print('2. Ștergerea tuturor facturilor pentru un apartament dat')
     print('x. Exit')
 
-def handle_add(cheltuieli):
-    nr_ap=int(input("Dati numarul apartamentului: "))
-    suma=float(input("Dati suma cheltuielilor: "))
-    data=str(input("Dati data in care s-a primit factura cheltuielilor: "))
-    tipul=str(input("Dati tipul cheltuielii: "))
-    return create(cheltuieli,nr_ap, suma, data, tipul)
+def handle_add(facturi):
+    id=int(input("Dati id-ul facturii: "))
+    nr_ap=input("Dati numarul apartamentului: ")
+    suma=float(input("Dati suma facturii: "))
+    data=str(input("Dati data in care s-a primit factura facturilor: "))
+    tipul=str(input("Dati tipul facturii: "))
+    return create(facturi,id,nr_ap, suma, data, tipul)
 
-def handle_show_all(cheltuieli):
-    for cheltuiala in cheltuieli:
-        print(get_str(cheltuiala))
+def handle_show_all(facturi):
+    for factura in facturi:
+        print(get_str(factura))
 
-def handle_show_details(cheltuieli):
-    nr_ap=int(input("Dati numarul aprtamentului despre care doriti detalii: "))
-    cheltuiala=read(cheltuieli,nr_ap)
-    print(f"Suma este: {get_suma(cheltuiala)}, primita la data de {get_data(cheltuiala)}, fiind de tipul {get_tipul(cheltuiala)}")
+def handle_show_details(facturi):
+    id=int(input("Dati id-ul facturii despre care doriti detalii: "))
+    factura=read(facturi,id)
+    print(f"Numarul apartamentului este: {get_nr_ap(factura)}, suma este: {get_suma(factura)}, primita la data de {get_data(factura)}, fiind de tipul {get_tipul(factura)}")
 
-def handle_update(cheltuieli):
-    nr_ap = int(input("Dati numarul apartamentului care se actualizeaza: "))
-    suma = float(input("Dati noua suma cheltuielilor: "))
-    data = str(input("Dati data noua in care s-a primit factura cheltuielilor: "))
-    tipul = str(input("Dati tipul nou de cheltuieli: "))
-    return update(cheltuieli,creeaza_cheltuiala(nr_ap,suma,data,tipul))
+def handle_update(facturi):
+    id = int(input("Id-ul facturii care se actualizeaza este: "))
+    nr_ap = int(input("Dati numarul noului apartament care se actualizeaza: "))
+    suma = float(input("Dati noua suma facturii: "))
+    data = str(input("Dati data noua in care s-a primit factura facturilor: "))
+    tipul = str(input("Dati tipul nou de facturi: "))
+    return update(facturi,creeaza_factura(id,nr_ap,suma,data,tipul))
 
-def handle_crud(cheltuieli):
+
+def handle_delete(facturi):
+    id=int(input("Dati id-ul facturii care se sterge: "))
+    facturi=delete(facturi,id)
+    print("Stergerea a fost efectuata cu succes.")
+    return facturi
+
+def handle_crud(facturi):
     while True:
         print('1. Adaugare')
         print('2. Modificare')
         print('3. Stergere')
         print('a. Afisaare')
-        print('d. Detalii cheltuiala')
+        print('d. Detalii factura')
         print('b. Revenire')
         optiune=input('Optiunea aleasa este: ')
         if optiune=='1':
-            cheltuieli=handle_add(cheltuieli)
+            facturi=handle_add(facturi)
         elif optiune=='2':
-            handle_update(cheltuieli)
+            facturi=handle_update(facturi)
+        elif optiune=='3':
+            facturi=handle_delete(facturi)
         elif optiune=='a':
-            handle_show_all(cheltuieli)
+            handle_show_all(facturi)
         elif optiune=='d':
-            handle_show_details(cheltuieli)
+            handle_show_details(facturi)
         elif optiune=='b':
             break
         else:
             print('Optiune invalida')
-    return cheltuieli
+    return facturi
 
-def run_ui(cheltuielli):
+def run_ui(facturii):
     while True:
         show_menu()
-        optiune=input("Optiunea aleasa este:")
+        optiune=input("Optiunea aleasa este: ")
         if optiune=='1':
-            handle_crud(cheltuielli)
+            handle_crud(facturii)
         elif optiune=='x':
             break
         else:
             print('Optiune invalida')
-    return cheltuielli
+    return facturii

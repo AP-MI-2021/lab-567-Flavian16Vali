@@ -1,61 +1,62 @@
-from Domain.cheltuiala import get_nr_ap
-from Domain.cheltuiala import creeaza_cheltuiala
+from Domain.factura import get_id
+from Domain.factura import creeaza_factura
 
-def create(lst_cheltuieli,nr_ap:int, suma:float, data:str, tipul:str):
+def create(lst_facturi,id:int, nr_ap:int, suma:float, data:str, tipul:str):
     '''
 
-    :param lst_cheltuieli: lista de cheltuieli
-    :param nr_ap: numarul apartamentului, trebuie sa fie unic
-    :param suma: cheltuiala totala
-    :param data: ata in care se primeste factura
-    :param tipul: tipul cheltuielii, intretinerea, canal si alte cheltuieli
-    :return: o nou lista formata din lst_cheltuieli si noua cheltuiala adaugata
+    :param lst_facturi: lista de facturi
+    :param id: id-ul facturii, trebuie sa fie unic
+    :param nr_ap: numarul apartamentului
+    :param suma: factura totala
+    :param data: data in care se primeste factura
+    :param tipul: tipul facturii
+    :return: o noua lista formata din lst_facturi si noua factura adaugata
     '''
-    cheltuiala=creeaza_cheltuiala(nr_ap,suma,data,tipul)
-    #lst_cheltuieli.append(cheltuiala)
-    return lst_cheltuieli + [cheltuiala]
+    factura=creeaza_factura(id,nr_ap,suma,data,tipul)
+    #lst_facturi.append(factura)
+    return lst_facturi + [factura]
 
 
-def read(lst_cheltuieli, nr_ap=None):
+def read(lst_facturi, id=None):
     '''
-    Citeste o cheltuiala din baza de date
-    :param lst_cheltuieli: lista de cheltuieli
-    :param nr_ap: numarul apartamentului dorit
-    :return: apartamentul cu numarul nr_ap sau lista cu toate cheltuielile, daca nr_ap=None
+    Citeste o factura din baza de date
+    :param lst_facturi: lista de facturi
+    :param id: id-ul facturii
+    :return: factura cu id-ul sau lista cu toate facturile, daca id=None
     '''
-    cheltuiala_ap=None
-    for cheltuiala in lst_cheltuieli:
-        if get_nr_ap(cheltuiala)==nr_ap:
-            cheltuiala_ap=cheltuiala
-    if cheltuiala_ap:
-        return cheltuiala_ap
-    return lst_cheltuieli
+    factura_ap=None
+    for factura in lst_facturi:
+        if get_id(factura)==id:
+            factura_ap=factura
+    if factura_ap:
+        return factura_ap
+    return lst_facturi
 
 
-def update(lst_cheltuieli, new_cheltuiala):
+def update(lst_facturi, new_factura):
     '''
-    Actualizeaza o cheltuiala
-    :param lst_cheltuieli: lista de cheltuieli
-    :param new_cheltuiala: cheltuiala care se va actualiza, numarul apartamentului trebuie sa fie unul existent
-    :return: o lista cu cheltuiala actualizata
+    Actualizeaza o factura
+    :param lst_facturi: lista de facturi
+    :param new_factura: factura care se va actualiza, numarul apartamentului trebuie sa fie unul existent
+    :return: o lista cu factura actualizata
     '''
-    new_cheltuiali= []
-    for cheltuiala in lst_cheltuieli:
-        if get_nr_ap(cheltuiala)!=get_nr_ap(new_cheltuiala):
-            new_cheltuiali.append(cheltuiala)
-        else: new_cheltuiali.append(new_cheltuiala)
-    return new_cheltuiali
+    new_facturi= []
+    for factura in lst_facturi:
+        if get_id(factura)!=get_id(new_factura):
+            new_facturi.append(factura)
+        else: new_facturi.append(new_factura)
+    return new_facturi
 
 
-def delete(lst_cheltuiali, nr_ap):
+def delete(lasr_facturi, id):
     '''
-    Eliminarea unei cheltuieli din lista
-    :param lst_cheltuiali: lista de cheltuieli
-    :param nr_ap: numarul apartamentului dorit
-    :return: o lista de cheltuieli fara cheltuiala de la apartamentul CU numarul nr_ap
+    Eliminarea unei facturi din lista
+    :param lasr_facturi: lista de facturi
+    :param id: numarul apartamentului dorit
+    :return: o lista de facturi fara factura de la apartamentul CU numarul id
     '''
-    new_cheltuieli= []
-    for cheltuiala in lst_cheltuiali:
-        if get_nr_ap(cheltuiala)!=nr_ap:
-            new_cheltuieli.append(cheltuiala)
-    return new_cheltuieli
+    new_facturi= []
+    for factura in lasr_facturi:
+        if get_id(factura)!=id:
+            new_facturi.append(factura)
+    return new_facturi
