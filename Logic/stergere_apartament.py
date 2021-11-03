@@ -13,8 +13,8 @@ def delete_ap(lst_facturi,nr_ap):
             new_facturi.append(factura)
     return new_facturi
 
-def handle_delete_apartament(facturi):
-    nr_ap=int(input("Dati numarul apartamentului caruia i se sterg facturile: "))
-    facturi=delete_ap(facturi,nr_ap)
-    print(("Stergerea tuturor facturilor apartamentului selectat a fost efectuata cu succes."))
-    return facturi
+#def handle_delete_apartament(facturi):
+  #  nr_ap=int(input("Dati numarul apartamentului caruia i se sterg facturile: "))
+#    facturi=delete_ap(facturi,nr_ap)
+  #  print(("Stergerea tuturor facturilor apartamentului selectat a fost efectuata cu succes."))
+  #  return facturi

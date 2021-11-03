@@ -7,7 +7,8 @@ from Domain.factura import get_data
 from Domain.factura import get_tipul
 from Logic.crud import update
 from Domain.factura import creeaza_factura
-from Logic.stergere_apartament import handle_delete_apartament
+from Logic.stergere_apartament import delete_ap
+
 
 def show_menu():
     print('1. CRUD')
@@ -16,7 +17,7 @@ def show_menu():
 
 def handle_add(facturi):
     id=int(input("Dati id-ul facturii: "))
-    nr_ap=input("Dati numarul apartamentului: ")
+    nr_ap=int(input("Dati numarul apartamentului: "))
     suma=float(input("Dati suma facturii: "))
     data=str(input("Dati data in care s-a primit factura facturilor: "))
     tipul=str(input("Dati tipul facturii: "))
@@ -46,7 +47,11 @@ def handle_delete(facturi):
     print("Stergerea facturii a fost efectuata cu succes.")
     return facturi
 
-
+def handle_delete_apartament(facturi):
+    nr_ap=int(input("Dati numarul apartamentului caruia i se sterg facturile: "))
+    facturi=delete_ap(facturi,nr_ap)
+    print(("Stergerea tuturor facturilor apartamentului selectat a fost efectuata cu succes."))
+    return facturi
 
 def handle_crud(facturi):
     while True:

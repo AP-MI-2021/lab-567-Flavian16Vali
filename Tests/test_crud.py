@@ -5,6 +5,7 @@ from Domain.factura import get_id
 from Logic.crud import update
 from Logic.crud import delete
 
+
 def get_data():
     return [
         creeaza_factura(1,10,500,'16/12/2020','intretinere'),
