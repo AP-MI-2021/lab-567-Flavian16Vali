@@ -8,7 +8,7 @@ def creeaza_factura(id:int, nr_ap:int, suma:float, data:str, tipul:str):
     :param tipul: tipul facturii
     :return: factura
     '''
-    return [id,nr_ap, suma, data, tipul]
+    return [id, nr_ap, suma, data, tipul]
 
 def get_id(factura):
     '''

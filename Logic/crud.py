@@ -1,4 +1,4 @@
-from Domain.factura import get_id
+from Domain.factura import get_id, get_nr_ap
 from Domain.factura import creeaza_factura
 
 def create(lst_facturi,id:int, nr_ap:int, suma:float, data:str, tipul:str):
@@ -48,7 +48,7 @@ def update(lst_facturi, new_factura):
     return new_facturi
 
 
-def delete(lasr_facturi, id):
+def delete(lst_facturi, id):
     '''
     Eliminarea unei facturi din lista
     :param lasr_facturi: lista de facturi
@@ -56,7 +56,7 @@ def delete(lasr_facturi, id):
     :return: o lista de facturi fara factura de la apartamentul CU numarul id
     '''
     new_facturi= []
-    for factura in lasr_facturi:
+    for factura in lst_facturi:
         if get_id(factura)!=id:
             new_facturi.append(factura)
     return new_facturi

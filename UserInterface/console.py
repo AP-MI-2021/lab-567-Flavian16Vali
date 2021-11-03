@@ -1,3 +1,4 @@
+from Logic.adaugare_valoare import handle_adaugare_valoare
 from Logic.crud import create, delete
 from Domain.factura import get_str, get_nr_ap, get_id
 from Logic.crud import read
@@ -6,10 +7,11 @@ from Domain.factura import get_data
 from Domain.factura import get_tipul
 from Logic.crud import update
 from Domain.factura import creeaza_factura
+from Logic.stergere_apartament import handle_delete_apartament
 
 def show_menu():
     print('1. CRUD')
-    print('2. Ștergerea tuturor facturilor pentru un apartament dat')
+    print('2. Ștergere')
     print('x. Exit')
 
 def handle_add(facturi):
@@ -41,16 +43,20 @@ def handle_update(facturi):
 def handle_delete(facturi):
     id=int(input("Dati id-ul facturii care se sterge: "))
     facturi=delete(facturi,id)
-    print("Stergerea a fost efectuata cu succes.")
+    print("Stergerea facturii a fost efectuata cu succes.")
     return facturi
+
+
 
 def handle_crud(facturi):
     while True:
-        print('1. Adaugare')
-        print('2. Modificare')
-        print('3. Stergere')
-        print('a. Afisaare')
-        print('d. Detalii factura')
+        print('1. Adaugare unei facturi')
+        print('2. Modificarea unei facturi')
+        print('3. Stergerea unei facturi')
+        print('4. Stergerea facturilor unui apartament')
+        print('5. Adunarea unei valori la toate facturile dintr-o dată citită.')
+        print('a. Afisaarea tuturor facturilor')
+        print('d. Detaliile unei facturi')
         print('b. Revenire')
         optiune=input('Optiunea aleasa este: ')
         if optiune=='1':
@@ -59,6 +65,10 @@ def handle_crud(facturi):
             facturi=handle_update(facturi)
         elif optiune=='3':
             facturi=handle_delete(facturi)
+        elif optiune=='4':
+            facturi=handle_delete_apartament(facturi)
+        elif optiune=='5':
+            facturi=handle_adaugare_valoare(facturi)
         elif optiune=='a':
             handle_show_all(facturi)
         elif optiune=='d':
