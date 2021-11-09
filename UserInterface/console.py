@@ -7,7 +7,10 @@ from Domain.factura import get_data
 from Domain.factura import get_tipul
 from Logic.crud import update
 from Domain.factura import creeaza_factura
+from Logic.det_factura_max_tip_data import get_tip, get_det_fac_max
 from Logic.stergere_apartament import delete_ap
+from Logic.descrescator_suma import ordonare_descrescator
+from Logic.sume_lunare_apartament import suma_ap
 
 
 def show_menu():
@@ -55,14 +58,17 @@ def handle_delete_apartament(facturi):
 
 def handle_crud(facturi):
     while True:
-        print('1. Adaugare unei facturi')
-        print('2. Modificarea unei facturi')
-        print('3. Stergerea unei facturi')
-        print('4. Stergerea facturilor unui apartament')
+        print('1. Adaugare unei facturi.')
+        print('2. Modificarea unei facturi.')
+        print('3. Stergerea unei facturi.')
+        print('4. Stergerea facturilor unui apartament.')
         print('5. Adunarea unei valori la toate facturile dintr-o dată citită.')
-        print('a. Afisaarea tuturor facturilor')
-        print('d. Detaliile unei facturi')
-        print('b. Revenire')
+        print('6. Ordonarea facturilor descrescator in functie de suma.')
+        print('7. Afisarea fiecarui apartament facturile totale pentru fiecare luna.')
+        print('8. Determinarea celei mai mari facturi pentru fiecare tip de cheltuiala.')
+        print('a. Afisaarea tuturor facturilor.')
+        print('d. Detaliile unei facturi.')
+        print('b. Revenire.')
         optiune=input('Optiunea aleasa este: ')
         if optiune=='1':
             facturi=handle_add(facturi)
@@ -74,6 +80,12 @@ def handle_crud(facturi):
             facturi=handle_delete_apartament(facturi)
         elif optiune=='5':
             facturi=handle_adaugare_valoare(facturi)
+        elif optiune=='6':
+            facturi=ordonare_descrescator(facturi)
+        elif optiune=='7':
+            suma_ap(facturi)
+        elif optiune=='8':
+            get_det_fac_max(facturi)
         elif optiune=='a':
             handle_show_all(facturi)
         elif optiune=='d':

@@ -21,7 +21,7 @@ def adugare_valoare(lst_facturi,suma,data):
 
 def handle_adaugare_valoare(facturi):
     suma=float(input("Valoarea adaugata la sume este: "))
-    data=str(input("Data in care au ajuns facturile care le vor fi modificate sumele este: "))
+    data=str(input("Data in care au ajuns facturile carora le vor fi modificate sumele este: "))
     facturi=adugare_valoare(facturi,suma,data)
     print("Adaugarea valorii la sume a fost un succes.")
     return facturi

@@ -4,8 +4,8 @@ from UserInterface.console import run_ui
 
 def main():
     facturi=[]
-    #facturi=run_ui(facturi)
-    user_main()
+    facturi=run_ui(facturi)
+    #user_main()
 
 if __name__=='__main__':
     test_pentru_crud()
