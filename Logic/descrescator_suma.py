@@ -14,4 +14,4 @@ def ordonare_descrescator(factura):
                 factura[i]=factura[j]
                 factura[j]=aux
     return factura
-
+#sasda
