@@ -7,7 +7,9 @@ from Tests.test_stergere_apartament import test_delete_apartament
 
 def main():
     facturi=[]
-    facturi=run_ui(facturi)
+    undo_list=[]
+    redo_list=[]
+    facturi=run_ui(facturi,undo_list,redo_list)
     #user_main()
 
 if __name__=='__main__':

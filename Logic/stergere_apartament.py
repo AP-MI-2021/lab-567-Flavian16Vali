@@ -1,6 +1,6 @@
 from Domain.factura import get_nr_ap
 
-def delete_ap(lst_facturi,nr_ap):
+def delete_ap(lst_facturi,nr_ap,undo_list,redo_list):
     '''
     Eliminarea facturilor unui apartament
     :param lst_facturi: Lista facturilor

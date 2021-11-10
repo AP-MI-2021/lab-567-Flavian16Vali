@@ -1,7 +1,8 @@
 from Domain.factura import get_id, get_nr_ap
 from Domain.factura import creeaza_factura
 
-def create(lst_facturi,id:int, nr_ap:int, suma:float, data:str, tipul:str):
+def create(lst_facturi,id:int, nr_ap:int, suma:float, data:str, tipul:str,
+           undo_list:list, redo_list:list):
     '''
 
     :param lst_facturi: lista de facturi
@@ -10,10 +11,17 @@ def create(lst_facturi,id:int, nr_ap:int, suma:float, data:str, tipul:str):
     :param suma: factura totala
     :param data: data in care se primeste factura
     :param tipul: tipul facturii
+    :param undo_list:
     :return: o noua lista formata din lst_facturi si noua factura adaugata
     '''
-    factura=creeaza_factura(id,nr_ap,suma,data,tipul)
+
+
+
+    factura=creeaza_factura(id,nr_ap,suma,data,tipul,undo_list,redo_list)
     #lst_facturi.append(factura)
+
+    undo_list.append(lst_facturi)
+    redo_list.clear()
     return lst_facturi + [factura]
 
 
@@ -33,7 +41,7 @@ def read(lst_facturi, id=None):
     return lst_facturi
 
 
-def update(lst_facturi, new_factura):
+def update(lst_facturi, new_factura, undo_list, redo_list):
     '''
     Actualizeaza o factura
     :param lst_facturi: lista de facturi
@@ -45,10 +53,14 @@ def update(lst_facturi, new_factura):
         if get_id(factura)!=get_id(new_factura):
             new_facturi.append(factura)
         else: new_facturi.append(new_factura)
+
+    undo_list.append(lst_facturi)
+    redo_list.clear()
+
     return new_facturi
 
 
-def delete(lst_facturi, id):
+def delete(lst_facturi, id, undo_list, redo_list):
     '''
     Eliminarea unei facturi din lista
     :param lasr_facturi: lista de facturi
@@ -59,4 +71,8 @@ def delete(lst_facturi, id):
     for factura in lst_facturi:
         if get_id(factura)!=id:
             new_facturi.append(factura)
+
+    undo_list.append(lst_facturi)
+    redo_list.clear()
+
     return new_facturi

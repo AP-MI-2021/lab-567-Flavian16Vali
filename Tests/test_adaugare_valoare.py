@@ -3,24 +3,30 @@ from Logic.adaugare_valoare import adugare_valoare
 
 
 def get_data():
+    undo_list=[]
+    redo_list=[]
     return [
-        creeaza_factura(1,10,500,'16/12/2020','caldura'),
-        creeaza_factura(2,11,700,'1/2/2020','chirie'),
-        creeaza_factura(3,12,850,'6/1/2020','intretinere'),
-        creeaza_factura(4,13,550,'6/2/2020','gaz'),
-        creeaza_factura(5,14,250,'26/2/2021','apa')
+        creeaza_factura(1,10,500,'16/12/2020','caldura',undo_list,redo_list),
+        creeaza_factura(2,11,700,'1/2/2020','chirie',undo_list,redo_list),
+        creeaza_factura(3,12,850,'6/1/2020','intretinere',undo_list,redo_list),
+        creeaza_factura(4,13,550,'6/2/2020','gaz',undo_list,redo_list),
+        creeaza_factura(5,14,250,'26/2/2021','apa',undo_list,redo_list)
     ]
 
 def get_data1():
+    undo_list = []
+    redo_list = []
     return [
-        creeaza_factura(1,10,500,'16/12/2020','caldura'),
-        creeaza_factura(2,11,700,'1/2/2020','chirie'),
-        creeaza_factura(3,12,950,'6/1/2020','intretinere'),
-        creeaza_factura(4,13,550,'6/2/2020','gaz'),
-        creeaza_factura(5,14,260,'26/2/2021','apa')
+        creeaza_factura(1,10,500,'16/12/2020','caldura',undo_list,redo_list),
+        creeaza_factura(2,11,700,'1/2/2020','chirie',undo_list,redo_list),
+        creeaza_factura(3,12,950,'6/1/2020','intretinere',undo_list,redo_list),
+        creeaza_factura(4,13,550,'6/2/2020','gaz',undo_list,redo_list),
+        creeaza_factura(5,14,260,'26/2/2021','apa',undo_list,redo_list)
     ]
 def test_adaugare_val():
     facturi=get_data()
+    undo_list = []
+    redo_list = []
     to_add1=0
     to_date1='16/12/2020'
     to_add2=10
