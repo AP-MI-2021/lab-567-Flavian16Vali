@@ -63,14 +63,14 @@ def handle_delete_apartament(facturi):
 
 
 def handle_undo(facturi,undo_list,redo_list):
-    undo_result=do_undo(undo_list,redo_list)
+    undo_result=do_undo(undo_list,redo_list,facturi)
     if undo_result is not None:
         return undo_result
     return facturi
 
 
 def handle_redo(facturi,undo_list,redo_list):
-    redo_result=do_redo(undo_list,redo_list)
+    redo_result=do_redo(undo_list,redo_list,facturi)
     if redo_result is not None:
         return redo_result
     return facturi
