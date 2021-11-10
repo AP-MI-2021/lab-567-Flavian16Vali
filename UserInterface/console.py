@@ -36,7 +36,7 @@ def handle_show_details(facturi):
     factura=read(facturi,id)
     print(f"Numarul apartamentului este: {get_nr_ap(factura)}, suma este: {get_suma(factura)}, primita la data de {get_data(factura)}, fiind de tipul {get_tipul(factura)}")
 
-def handle_update(facturi):
+def handle_update(facturi,undo_list,redo_list):
     id = int(input("Id-ul facturii care se actualizeaza este: "))
     nr_ap = int(input("Dati numarul noului apartament care se actualizeaza: "))
     suma = float(input("Dati noua suma facturii: "))
@@ -96,7 +96,7 @@ def handle_crud(facturi, undo_list, redo_list):
         if optiune=='1':
             facturi=handle_add(facturi,undo_list,redo_list)
         elif optiune=='2':
-            facturi=handle_update(facturi)
+            facturi=handle_update(facturi,undo_list,redo_list)
         elif optiune=='3':
             facturi=handle_delete(facturi,undo_list,redo_list)
         elif optiune=='4':
