@@ -37,6 +37,8 @@ def run_console_ui():
                     facturi = validate_update(args, facturi,undo_list, redo_list)
                 elif args[0] == "showall":
                     validate_showall(args, facturi)
+                elif args[0] == "exit":
+                    break
                 else:
                     print(f"'{args[0]}' is not a valid command!")
                     help_dialog()
