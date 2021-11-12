@@ -7,29 +7,29 @@ def get_data():
     undo_list=[]
     redo_list=[]
     return [
-        creeaza_factura(1,10,500,'16/12/2020','apa',undo_list,redo_list),
-        creeaza_factura(2,11,700,'1/2/2020','chirie',undo_list,redo_list),
-        creeaza_factura(3,12,850,'6/1/2020','gaz',undo_list,redo_list),
-        creeaza_factura(4,13,550,'6/2/2020','caldura',undo_list,redo_list),
-        creeaza_factura(5,14,250,'26/2/2021','total',undo_list,redo_list)
+        creeaza_factura(1,10,500,'16/12/2020','apa'),
+        creeaza_factura(2,11,700,'1/2/2020','chirie'),
+        creeaza_factura(3,12,850,'6/1/2020','gaz'),
+        creeaza_factura(4,13,550,'6/2/2020','caldura'),
+        creeaza_factura(5,14,250,'26/2/2021','total')
     ]
 def get_data1():
     undo_list = []
     redo_list = []
     return [
-        creeaza_factura(1,10,500,'16/12/2020','apa',undo_list,redo_list),
-        creeaza_factura(3,12,850,'6/1/2020','gaz',undo_list,redo_list),
-        creeaza_factura(4,13,550,'6/2/2020','caldura',undo_list,redo_list),
-        creeaza_factura(5,14,250,'26/2/2021','total',undo_list,redo_list)
+        creeaza_factura(1,10,500,'16/12/2020','apa'),
+        creeaza_factura(3,12,850,'6/1/2020','gaz'),
+        creeaza_factura(4,13,550,'6/2/2020','caldura'),
+        creeaza_factura(5,14,250,'26/2/2021','total')
     ]
 def get_data2():
     undo_list = []
     redo_list = []
     return [
-        creeaza_factura(2, 11, 700, '1/2/2020', 'chirie',undo_list,redo_list),
-        creeaza_factura(3, 12, 850, '6/1/2020', 'gaz',undo_list,redo_list),
-        creeaza_factura(4, 13, 550, '6/2/2020', 'caldura',undo_list,redo_list),
-        creeaza_factura(5, 14, 250, '26/2/2021', 'total',undo_list,redo_list)
+        creeaza_factura(2, 11, 700, '1/2/2020', 'chirie'),
+        creeaza_factura(3, 12, 850, '6/1/2020', 'gaz'),
+        creeaza_factura(4, 13, 550, '6/2/2020', 'caldura'),
+        creeaza_factura(5, 14, 250, '26/2/2021', 'total')
     ]
 def test_delete_apartament():
     facturi=get_data()

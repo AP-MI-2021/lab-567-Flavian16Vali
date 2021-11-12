@@ -9,8 +9,12 @@ def main():
     facturi=[]
     undo_list=[]
     redo_list=[]
-    #facturi=run_ui(facturi,undo_list,redo_list)
-    facturi=run_console_ui()
+    selecteaza_interfata=int(input("Selecteaza '1' pentru interfata producatorului si '2' pentru interfata utilizatorului: "))
+    if selecteaza_interfata==1:
+        facturi=run_ui(facturi,undo_list,redo_list)
+    elif selecteaza_interfata==2:
+        facturi=run_console_ui()
+    else: print("Optiunea introdusa nu este corecta.")
 
 if __name__=='__main__':
     test_pentru_crud()

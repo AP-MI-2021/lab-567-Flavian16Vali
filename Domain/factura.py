@@ -1,4 +1,4 @@
-def creeaza_factura(id:int, nr_ap:int, suma:float, data:str, tipul:str,undo_list,redo_list):
+def creeaza_factura(id:int, nr_ap:int, suma:float, data:str, tipul:str):
     '''
     Creeaza o factura
     :param id: id-ul facturii, trebuie sa fie unic
@@ -8,7 +8,7 @@ def creeaza_factura(id:int, nr_ap:int, suma:float, data:str, tipul:str,undo_list
     :param tipul: tipul facturii
     :return: factura
     '''
-    return [id, nr_ap, suma, data, tipul, undo_list, redo_list]
+    return [id, nr_ap, suma, data, tipul]
 
 def get_id(factura):
     '''

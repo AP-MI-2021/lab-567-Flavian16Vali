@@ -2,7 +2,7 @@ from Domain.factura import get_data
 from Domain.factura import get_suma
 
 
-def adugare_valoare(lst_facturi,suma,data):
+def adugare_valoare(lst_facturi,suma,data,undo_list,redo_list):
     '''
     Adunarea unei valori la toate facturile dintr-o dată citită.
     :param lst_facturi: lista facturilor
@@ -10,6 +10,7 @@ def adugare_valoare(lst_facturi,suma,data):
     :return: lista cu sumeles schimbate
     '''
     new_facturi= []
+
     for factura in lst_facturi:
         if set(get_data(factura))==set(data):
             new_facturi.append(factura)
@@ -19,9 +20,9 @@ def adugare_valoare(lst_facturi,suma,data):
     return new_facturi
 
 
-def handle_adaugare_valoare(facturi):
+def handle_adaugare_valoare(facturi,undo_list,redo_list):
     suma=float(input("Valoarea adaugata la sume este: "))
     data=str(input("Data in care au ajuns facturile carora le vor fi modificate sumele este: "))
-    facturi=adugare_valoare(facturi,suma,data)
+    facturi=adugare_valoare(facturi,suma,data,undo_list,redo_list)
     print("Adaugarea valorii la sume a fost un succes.")
     return facturi

@@ -40,7 +40,7 @@ def run_console_ui():
                 elif args[0] == "exit":
                     break
                 else:
-                    print(f"'{args[0]}' is not a valid command!")
+                    print(f"'{args[0]}' nu este o comanda valida!")
                     help_dialog()
 
 
@@ -50,10 +50,10 @@ def validate_add(args, facturi,undo_list, redo_list):
             facturi = create(facturi, int(args[1]), int(args[2]), float(args[3]), str(args[4]),
                              str(args[5]),undo_list, redo_list)
         except ValueError:
-            print("Argument for item ID should be a valid integer.\n"
-                  "Argument for purchase price should be a valid float.")
+            print("Argumentul pentru ID trebuie sa fie un numar intreg valid.\n"
+                  "Argumentul pentru suma ar trebui sa fie un float valid.")
     else:
-        print("Command 'add' expects 5 arguments.")
+        print("Comanda 'add' se asteapta la 5 argumente.")
     return facturi
 
 
@@ -63,13 +63,13 @@ def validate_update(args, facturi,undo_list, redo_list):
     if len(args) == 6:
         try:
             facturi = update(facturi, creeaza_factura(int(args[1]), int(args[2]), float(args[3]), str(args[4]),
-                             str(args[5]),undo_list, redo_list)
+                             str(args[5]))
                              ,undo_list, redo_list)
         except ValueError:
-            print("Argument for item ID should be a valid integer.\n"
-                  "Argument for purchase price should be a valid float.")
+            print("Argumentul pentru ID trebuie sa fie un numar intreg valid.\n"
+                  "Argumentul pentru suma ar trebui sa fie un float valid.")
     else:
-        print("Command 'update' expects 5 arguments.")
+        print("Comanda 'update' se asteapta 5 argumente.")
     return facturi
 
 
@@ -78,9 +78,9 @@ def validate_remove(args, facturi,undo_list, redo_list):
         try:
             facturi = delete(facturi, int(args[1]),undo_list, redo_list)
         except ValueError:
-            print("Argument for item ID should be a valid integer.")
+            print("Argumentul pentru ID trebuie sa fie un numar intreg.")
     else:
-        print("Command 'remove' expects a single argument.")
+        print("Comanda 'remove' se asteapta doar la un singur argument.")
     return facturi
 
 
@@ -89,4 +89,4 @@ def validate_showall(args, facturi):
         for item in facturi:
             print(get_str(item))
     else:
-        print("Command 'showall' expects no arguments.")
+        print("Comanda 'showall' nu se asteapta la argumente.")

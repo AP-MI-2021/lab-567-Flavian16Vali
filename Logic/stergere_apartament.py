@@ -8,10 +8,15 @@ def delete_ap(lst_facturi,nr_ap,undo_list,redo_list):
     :return: Lista facturilor fara cele de la un apartament dorit
     '''
     new_facturi= []
+    undo_list.append(lst_facturi)
+    redo_list.clear()
     for factura in lst_facturi:
         if get_nr_ap(factura)!=nr_ap:
             new_facturi.append(factura)
     return new_facturi
+
+
+#undo_list.append(lst_facturi)
 
 #def handle_delete_apartament(facturi):
   #  nr_ap=int(input("Dati numarul apartamentului caruia i se sterg facturile: "))
