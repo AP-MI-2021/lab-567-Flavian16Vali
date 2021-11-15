@@ -1,6 +1,6 @@
 from Logic.adaugare_valoare import handle_adaugare_valoare
 from Logic.crud import create, delete
-from Domain.factura import get_str, get_nr_ap
+from Domain.factura import get_str, get_nr_ap, get_id
 from Logic.crud import read
 from Domain.factura import get_suma
 from Domain.factura import get_data
@@ -41,11 +41,27 @@ def handle_show_all(facturi):
 
 def handle_show_details(facturi):
     id=int(input("Dati id-ul facturii despre care doriti detalii: "))
+
+    aparitie = 0
+    for _factura in facturi:
+        if get_id(_factura) == id:
+            aparitie = 1
+    if aparitie == 0:
+        raise ValueError(f"Nu exista nicio factura cu id-ul {id} careia sa i se afiseze detaliile.")
+
     factura=read(facturi,id)
     print(f"Numarul apartamentului este: {get_nr_ap(factura)}, suma este: {get_suma(factura)}, primita la data de {get_data(factura)}, fiind de tipul {get_tipul(factura)}")
 
 def handle_update(facturi,undo_list,redo_list):
     id = int(input("Id-ul facturii care se actualizeaza este: "))
+
+    aparitie = 0
+    for _factura in facturi:
+        if get_id(_factura) == id:
+            aparitie = 1
+    if aparitie == 0:
+        raise ValueError(f"Nu exista nicio factura cu id-ul {id} care sa fie modificata.")
+
     nr_ap = int(input("Dati numarul noului apartament care se actualizeaza: "))
     suma = float(input("Dati noua suma facturii: "))
     data = str(input("Dati data noua in care s-a primit factura facturilor: "))
@@ -55,12 +71,28 @@ def handle_update(facturi,undo_list,redo_list):
 
 def handle_delete(facturi,undo_list,redo_list):
     id=int(input("Dati id-ul facturii care se sterge: "))
+
+    aparitie = 0
+    for _factura in facturi:
+        if get_id(_factura) == id:
+            aparitie=1
+    if aparitie == 0:
+        raise ValueError(f"Nu exista nicio factura cu id-ul {id} care sa fie stearsa.")
+
     facturi=delete(facturi,id,undo_list,redo_list)
     print("Stergerea facturii a fost efectuata cu succes.")
     return facturi
 
 def handle_delete_apartament(facturi,undo_list,redo_list):
     nr_ap=int(input("Dati numarul apartamentului caruia i se sterg facturile: "))
+
+    aparitie = 0
+    for _factura in facturi:
+        if get_nr_ap(_factura) == nr_ap:
+            aparitie = 1
+    if aparitie == 0:
+        raise ValueError(f"Nu exista niciun apartament cu numarul {nr_ap} caruia sa i se stearga facturile.")
+
     facturi=delete_ap(facturi,nr_ap,undo_list,redo_list)
     print(("Stergerea tuturor facturilor apartamentului selectat a fost efectuata cu succes."))
     return facturi
@@ -92,6 +124,7 @@ def handle_crud(facturi, undo_list, redo_list):
         optiune=input('Optiunea aleasa este: ')
         if optiune=='1':
             facturi=handle_add(facturi,undo_list,redo_list)
+            #facturi=get_data()
         elif optiune=='2':
             facturi=handle_update(facturi,undo_list,redo_list)
         elif optiune=='3':
@@ -124,7 +157,7 @@ def run_ui(facturi, undo_list, redo_list):
         elif optiune=='4':
             get_det_fac_max(facturi)
         elif optiune=='5':
-            facturi = ordonare_descrescator(facturi, undo_list, redo_list)
+            facturi=ordonare_descrescator(facturi,undo_list,redo_list)
         elif optiune=='6':
             suma_ap(facturi)
         elif optiune=='u':

@@ -1,11 +1,18 @@
+from copy import deepcopy
+
 from Domain.factura import get_suma
 
-def ordonare_descrescator(facturi,undo_list,redo_list):
+def ordonare_descrescator(facturi:list,undo_list:list,redo_list:list):
     '''
     Ordoneaza descrescator facturile in functie de suma
-    :param factura: Lista facturilor
-    :return: Lista facturilor ordonate
+    :param facturi: Lista de facturi
+    :param undo_list: Lista precedenta a facturilor
+    :param redo_list: Lista modificata a facturilor
+    :return: 
     '''
+
+    undo_list.append(deepcopy(facturi))
+    redo_list.clear()
 
     for i in range(0, len(facturi) - 1):
         for j in range(i + 1, len(facturi)):

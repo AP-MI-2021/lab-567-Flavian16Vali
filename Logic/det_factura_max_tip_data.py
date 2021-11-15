@@ -34,4 +34,5 @@ def get_det_fac_max(facturi):
         for factura in facturi:
             if get_suma(factura)==val_max:
                 print("Valoarea maxima pentru tipul de factura: ",tip_factura, ", fiind: ", get_str(factura))
+                val_max=-1
                 break

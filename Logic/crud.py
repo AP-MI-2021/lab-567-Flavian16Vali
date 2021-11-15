@@ -55,6 +55,7 @@ def update(lst_facturi, new_factura, undo_list, redo_list):
     :return: o lista cu factura actualizata
     '''
     new_facturi= []
+
     undo_list.append(lst_facturi)
     redo_list.clear()
     for factura in lst_facturi:
