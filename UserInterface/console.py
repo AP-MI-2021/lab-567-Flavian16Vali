@@ -30,6 +30,11 @@ def show_menu():
 
 def handle_add(facturi, undo_list, redo_list):
     id_f = int(input("Dati id-ul facturii: "))
+    if id_f < 1:
+        raise ValueError(f"Id-ul nu poate fi mai mic decat 1")
+    for _factura in facturi:
+        if get_id(_factura) == id_f:
+            raise ValueError("Deja exista o factura cu acest id.")
     nr_ap = int(input("Dati numarul apartamentului: "))
     suma = float(input("Dati suma facturii: "))
     data = str(input("Dati data in care s-a primit factura facturilor: "))
@@ -44,7 +49,8 @@ def handle_show_all(facturi):
 
 def handle_show_details(facturi):
     id_f = int(input("Dati id-ul facturii despre care doriti detalii: "))
-
+    if id_f < 1:
+        raise ValueError(f"Id-ul nu poate fi mai mic decat 1")
     aparitie = 0
     for _factura in facturi:
         if get_id(_factura) == id:
@@ -58,15 +64,18 @@ def handle_show_details(facturi):
 
 def handle_update(facturi,  undo_list, redo_list):
     id_f = int(input("Id-ul facturii care se actualizeaza este: "))
-
+    if id_f < 1:
+        raise ValueError(f"Id-ul nu poate fi mai mic decat 1")
     aparitie = 0
     for _factura in facturi:
-        if get_id(_factura) == id:
+        if get_id(_factura) == id_f:
             aparitie = 1
     if aparitie == 0:
         raise ValueError(f"Nu exista nicio factura cu id-ul {id_f} care sa fie modificata.")
 
     nr_ap = int(input("Dati numarul noului apartament care se actualizeaza: "))
+    if nr_ap < 1:
+        raise ValueError(f"Numarul apartamentului nu poate fi negativ")
     suma = float(input("Dati noua suma facturii: "))
     data = str(input("Dati data noua in care s-a primit factura facturilor: "))
     tipul = str(input("Dati tipul nou de facturi: "))
@@ -75,7 +84,8 @@ def handle_update(facturi,  undo_list, redo_list):
 
 def handle_delete(facturi, undo_list, redo_list):
     id_f = int(input("Dati id-ul facturii care se sterge: "))
-
+    if id_f < 1:
+        raise ValueError(f"Id-ul nu poate fi mai mic decat 1")
     aparitie = 0
     for _factura in facturi:
         if get_id(_factura) == id_f:
@@ -90,7 +100,8 @@ def handle_delete(facturi, undo_list, redo_list):
 
 def handle_delete_apartament(facturi, undo_list, redo_list):
     nr_ap = int(input("Dati numarul apartamentului caruia i se sterg facturile: "))
-
+    if nr_ap < 1:
+        raise ValueError(f"Numarul apartamentului nu poate fi mai mic decat 1")
     aparitie = 0
     for _factura in facturi:
         if get_nr_ap(_factura) == nr_ap:
