@@ -23,7 +23,7 @@ def test_create():
     redo_list = []
     params=(6,40,983,'4/10/2021','intretinere')
     c_new=creeaza_factura(*params)
-    new_facturi=create(facturi, *params,undo_list,redo_list)
+    new_facturi=create(facturi, *params, undo_list, redo_list)
     assert new_facturi[-1]==c_new
     assert c_new in new_facturi
 

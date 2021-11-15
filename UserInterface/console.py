@@ -27,64 +27,69 @@ def show_menu():
     print('d. Detaliile unei facturi.')
     print('x. Exit')
 
-def handle_add(facturi,undo_list,redo_list):
-    id=int(input("Dati id-ul facturii: "))
-    nr_ap=int(input("Dati numarul apartamentului: "))
-    suma=float(input("Dati suma facturii: "))
-    data=str(input("Dati data in care s-a primit factura facturilor: "))
-    tipul=str(input("Dati tipul facturii: "))
-    return create(facturi,id,nr_ap, suma, data, tipul,undo_list,redo_list)
+
+def handle_add(facturi, undo_list, redo_list):
+    id_f = int(input("Dati id-ul facturii: "))
+    nr_ap = int(input("Dati numarul apartamentului: "))
+    suma = float(input("Dati suma facturii: "))
+    data = str(input("Dati data in care s-a primit factura facturilor: "))
+    tipul = str(input("Dati tipul facturii: "))
+    return create(facturi, id_f, nr_ap, suma, data, tipul, undo_list, redo_list)
+
 
 def handle_show_all(facturi):
     for factura in facturi:
         print(get_str(factura))
 
+
 def handle_show_details(facturi):
-    id=int(input("Dati id-ul facturii despre care doriti detalii: "))
+    id_f = int(input("Dati id-ul facturii despre care doriti detalii: "))
 
     aparitie = 0
     for _factura in facturi:
         if get_id(_factura) == id:
             aparitie = 1
     if aparitie == 0:
-        raise ValueError(f"Nu exista nicio factura cu id-ul {id} careia sa i se afiseze detaliile.")
+        raise ValueError(f"Nu exista nicio factura cu id-ul {id_f} careia sa i se afiseze detaliile.")
 
-    factura=read(facturi,id)
+    factura = read(facturi, id_f)
     print(f"Numarul apartamentului este: {get_nr_ap(factura)}, suma este: {get_suma(factura)}, primita la data de {get_data(factura)}, fiind de tipul {get_tipul(factura)}")
 
-def handle_update(facturi,undo_list,redo_list):
-    id = int(input("Id-ul facturii care se actualizeaza este: "))
+
+def handle_update(facturi,  undo_list, redo_list):
+    id_f = int(input("Id-ul facturii care se actualizeaza este: "))
 
     aparitie = 0
     for _factura in facturi:
         if get_id(_factura) == id:
             aparitie = 1
     if aparitie == 0:
-        raise ValueError(f"Nu exista nicio factura cu id-ul {id} care sa fie modificata.")
+        raise ValueError(f"Nu exista nicio factura cu id-ul {id_f} care sa fie modificata.")
 
     nr_ap = int(input("Dati numarul noului apartament care se actualizeaza: "))
     suma = float(input("Dati noua suma facturii: "))
     data = str(input("Dati data noua in care s-a primit factura facturilor: "))
     tipul = str(input("Dati tipul nou de facturi: "))
-    return update(facturi,creeaza_factura(id,nr_ap,suma,data,tipul),undo_list,redo_list)
+    return update(facturi, creeaza_factura(id_f, nr_ap, suma, data, tipul), undo_list, redo_list)
 
 
-def handle_delete(facturi,undo_list,redo_list):
-    id=int(input("Dati id-ul facturii care se sterge: "))
+def handle_delete(facturi, undo_list, redo_list):
+    id_f = int(input("Dati id-ul facturii care se sterge: "))
 
     aparitie = 0
     for _factura in facturi:
-        if get_id(_factura) == id:
-            aparitie=1
+        if get_id(_factura) == id_f:
+            aparitie = 1
     if aparitie == 0:
-        raise ValueError(f"Nu exista nicio factura cu id-ul {id} care sa fie stearsa.")
+        raise ValueError(f"Nu exista nicio factura cu id-ul {id_f} care sa fie stearsa.")
 
-    facturi=delete(facturi,id,undo_list,redo_list)
+    facturi = delete(facturi, id_f, undo_list, redo_list)
     print("Stergerea facturii a fost efectuata cu succes.")
     return facturi
 
-def handle_delete_apartament(facturi,undo_list,redo_list):
-    nr_ap=int(input("Dati numarul apartamentului caruia i se sterg facturile: "))
+
+def handle_delete_apartament(facturi, undo_list, redo_list):
+    nr_ap = int(input("Dati numarul apartamentului caruia i se sterg facturile: "))
 
     aparitie = 0
     for _factura in facturi:
@@ -93,20 +98,20 @@ def handle_delete_apartament(facturi,undo_list,redo_list):
     if aparitie == 0:
         raise ValueError(f"Nu exista niciun apartament cu numarul {nr_ap} caruia sa i se stearga facturile.")
 
-    facturi=delete_ap(facturi,nr_ap,undo_list,redo_list)
-    print(("Stergerea tuturor facturilor apartamentului selectat a fost efectuata cu succes."))
+    facturi = delete_ap(facturi, nr_ap, undo_list, redo_list)
+    print("Stergerea tuturor facturilor apartamentului selectat a fost efectuata cu succes.")
     return facturi
 
 
-def handle_undo(facturi,undo_list,redo_list):
-    undo_result=do_undo(undo_list,redo_list,facturi)
+def handle_undo(facturi,  undo_list, redo_list):
+    undo_result = do_undo(undo_list, redo_list, facturi)
     if undo_result is not None:
         return undo_result
     return facturi
 
 
-def handle_redo(facturi,undo_list,redo_list):
-    redo_result=do_redo(undo_list,redo_list,facturi)
+def handle_redo(facturi, undo_list, redo_list):
+    redo_result = do_redo(undo_list, redo_list, facturi)
     if redo_result is not None:
         return redo_result
     return facturi
@@ -121,54 +126,56 @@ def handle_crud(facturi, undo_list, redo_list):
         print('r. Redo.')
         print('b. Revenire.')
         handle_show_all(facturi)
-        optiune=input('Optiunea aleasa este: ')
-        if optiune=='1':
-            facturi=handle_add(facturi,undo_list,redo_list)
-            #facturi=get_data()
-        elif optiune=='2':
-            facturi=handle_update(facturi,undo_list,redo_list)
-        elif optiune=='3':
-            facturi=handle_delete(facturi,undo_list,redo_list)
-        elif optiune=='u':
-            facturi=handle_undo(facturi,undo_list,redo_list)
-        elif optiune=='r':
-            facturi=handle_redo(facturi,undo_list,redo_list)
-        elif optiune=='a':
+        optiune = input('Optiunea aleasa este: ')
+        if optiune == '1':
+            facturi = handle_add(facturi, undo_list, redo_list)
+            """#facturi=get_data()"""
+        elif optiune == '2':
+            facturi = handle_update(facturi, undo_list, redo_list)
+        elif optiune == '3':
+            facturi = handle_delete(facturi, undo_list, redo_list)
+        elif optiune == 'u':
+            facturi = handle_undo(facturi, undo_list, redo_list)
+        elif optiune == 'r':
+            facturi = handle_redo(facturi, undo_list, redo_list)
+        elif optiune == 'a':
             handle_show_all(facturi)
-        elif optiune=='d':
+        elif optiune == 'd':
             handle_show_details(facturi)
-        elif optiune=='b':
+        elif optiune == 'b':
             break
         else:
             print('Optiune invalida')
     return facturi
 
+
 def run_ui(facturi, undo_list, redo_list):
     while True:
         show_menu()
         handle_show_all(facturi)
-        optiune=input("Optiunea aleasa este: ")
-        if optiune=='1':
-            facturi=handle_crud(facturi,undo_list,redo_list)
-        elif optiune=='2':
-            facturi=handle_delete_apartament(facturi,undo_list,redo_list)
-        elif optiune=='3':
-            facturi=handle_adaugare_valoare(facturi,undo_list,redo_list)
-        elif optiune=='4':
-            get_det_fac_max(facturi)
-        elif optiune=='5':
-            facturi=ordonare_descrescator(facturi,undo_list,redo_list)
-        elif optiune=='6':
+        optiune = input("Optiunea aleasa este: ")
+        if optiune == '1':
+            facturi = handle_crud(facturi, undo_list, redo_list)
+        elif optiune == '2':
+            facturi = handle_delete_apartament(facturi, undo_list, redo_list)
+        elif optiune == '3':
+            facturi = handle_adaugare_valoare(facturi, undo_list, redo_list)
+        elif optiune == '4':
+            for tip in get_det_fac_max(facturi):
+                print(tip)
+        elif optiune == '5':
+            facturi = ordonare_descrescator(facturi, undo_list, redo_list)
+        elif optiune == '6':
             suma_ap(facturi)
-        elif optiune=='u':
-            facturi=handle_undo(facturi,undo_list,redo_list)
-        elif optiune=='r':
-            facturi=handle_redo(facturi,undo_list,redo_list)
-        elif optiune=='a':
+        elif optiune == 'u':
+            facturi = handle_undo(facturi, undo_list, redo_list)
+        elif optiune == 'r':
+            facturi = handle_redo(facturi, undo_list, redo_list)
+        elif optiune == 'a':
             handle_show_all(facturi)
-        elif optiune=='d':
+        elif optiune == 'd':
             handle_show_details(facturi)
-        elif optiune=='x':
+        elif optiune == 'x':
             break
         else:
             print('Optiune invalida')

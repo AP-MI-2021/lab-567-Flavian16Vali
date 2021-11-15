@@ -1,12 +1,12 @@
 from Domain.factura import get_id
 from Domain.factura import creeaza_factura
 
-def create(lst_facturi,id:int, nr_ap:int, suma:float, data:str, tipul:str,
-           undo_list:list, redo_list:list):
-    '''
 
+def create(lst_facturi : list, id_f : int, nr_ap : int, suma : float, data : str, tipul : str, undo_list : list, redo_list : list):
+    '''
+    Creaza o factura
     :param lst_facturi: lista de facturi
-    :param id: id-ul facturii, trebuie sa fie unic
+    :param id_f: id-ul facturii, trebuie sa fie unic
     :param nr_ap: numarul apartamentului
     :param suma: factura totala
     :param data: data in care se primeste factura
@@ -18,7 +18,7 @@ def create(lst_facturi,id:int, nr_ap:int, suma:float, data:str, tipul:str,
     """if read(lst_facturi,id) is not None:
         raise Exception(f"Deja exista o factura cu id-ul {id}.")"""
 
-    factura=creeaza_factura(id,nr_ap,suma,data,tipul)
+    factura=creeaza_factura(id_f, nr_ap, suma, data, tipul)
     #lst_facturi.append(factura)
 
     for _factura in lst_facturi:
@@ -38,13 +38,15 @@ def read(lst_facturi, id):
     :param id: id-ul facturii
     :return: factura cu id-ul sau lista cu toate facturile, daca id=None
     '''
+    if id is None:
+        return lst_facturi
     factura_ap=None
     for factura in lst_facturi:
         if get_id(factura)==id:
             factura_ap=factura
     if factura_ap:
         return factura_ap
-    return lst_facturi
+    return None
 
 
 def update(lst_facturi, new_factura, undo_list, redo_list):

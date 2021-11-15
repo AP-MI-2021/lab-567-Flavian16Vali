@@ -1,11 +1,8 @@
 from Domain.factura import creeaza_factura
-from Logic.crud import read, delete
 from Logic.stergere_apartament import delete_ap
 
 
 def get_data():
-    undo_list=[]
-    redo_list=[]
     return [
         creeaza_factura(1,10,500,'16/12/2020','apa'),
         creeaza_factura(2,11,700,'1/2/2020','chirie'),
@@ -14,8 +11,6 @@ def get_data():
         creeaza_factura(5,14,250,'26/2/2021','total')
     ]
 def get_data1():
-    undo_list = []
-    redo_list = []
     return [
         creeaza_factura(1,10,500,'16/12/2020','apa'),
         creeaza_factura(3,12,850,'6/1/2020','gaz'),
@@ -23,8 +18,6 @@ def get_data1():
         creeaza_factura(5,14,250,'26/2/2021','total')
     ]
 def get_data2():
-    undo_list = []
-    redo_list = []
     return [
         creeaza_factura(2, 11, 700, '1/2/2020', 'chirie'),
         creeaza_factura(3, 12, 850, '6/1/2020', 'gaz'),
