@@ -24,7 +24,11 @@ def adugare_valoare(facturi, suma, data):
 
 def handle_adaugare_valoare(facturi, undo_list, redo_list):
 
-    suma = float(input("Valoarea adaugata la facturi este: "))
+    try:
+        suma = float(input("Valoarea adaugata la facturi este: "))
+    except ValueError as ve:
+        print("Suma invalida")
+        return facturi
     data = str(input("Data in care au ajuns facturile carora le vor fi modificate sumele este: "))
 
     aparitie = 0

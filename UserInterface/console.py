@@ -31,7 +31,7 @@ def show_menu():
 def handle_add(facturi, undo_list, redo_list):
     id_f = int(input("Dati id-ul facturii: "))
     if id_f < 1:
-        raise ValueError(f"Id-ul nu poate fi mai mic decat 1")
+        raise ValueError(f"Numarul apartamentului nu poate fi mai mic decat 1.")
     for _factura in facturi:
         if get_id(_factura) == id_f:
             raise ValueError("Deja exista o factura cu acest id.")
